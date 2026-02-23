@@ -1,14 +1,49 @@
-:root{
+:root {
+  /* Palette principale */
   --color-primary: #CCB531;
-  --color-accent: #6CC4BC;
-  --color-warm: #CC6831;
-  --color-bg: #F5F5F5;
-  --color-text: #333333;
-  --color-white: #FFFFFF;
-  --color-purple: #6A4C93;
+  --color-primary-dark: #b39f2b;
+  --color-primary-light: #e6d77a;
 
+  --color-accent: #6CC4BC;
+  --color-accent-dark: #57a89f;
+  --color-accent-light: #9adcd6;
+
+  --color-warm: #CC6831;
+  --color-warm-dark: #b35a2a;
+  --color-warm-light: #e68a5c;
+
+  --color-purple: #6A4C93;
+  --color-purple-dark: #583f7a;
+  --color-purple-light: #8c72b0;
+
+  /* Neutres */
+  --color-bg: #F5F5F5;
+  --color-white: #FFFFFF;
+  --color-text: #333333;
+  --color-muted: #777777;
+
+  /* Formes */
   --radius-sm: 6px;
   --radius-md: 12px;
-  --shadow-sm: 0 2px 6px rgba(0,0,0,0.08);
+  --radius-lg: 20px;
+
+  /* Ombres */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  /* Largeurs */
   --max-width: 1200px;
+
+  /* Espacements */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Typographie */
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
 }

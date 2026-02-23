@@ -1,16 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/public/Home";
-import Menu from "../pages/Menu";
-import Contact from "../pages/public/Contact";
+import { BrowserRouter } from "react-router-dom";
+
+import PublicRoutes from "./PublicRoutes";
+import AuthRoutes from "./AuthRoutes";
+import ClientRoutes from "./ClientRoutes";
+import SalarieRoutes from "./SalarieRoutes";
+import AdminRoutes from "./AdminRoutes";
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menus" element={<Menu />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      <PublicRoutes />
+      <AuthRoutes />
+      <ClientRoutes />
+      <SalarieRoutes />
+      <AdminRoutes />
     </BrowserRouter>
   );
 }
