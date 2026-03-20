@@ -1,51 +1,137 @@
 # Vite et Gourmand
 
-. Spécialiste en réservation de restauration rapide l'application a pour but de faciliter les commande ayx visiteurs en leur montrant le menu.
+Spécialiste de la réservation de restauration rapide, l’application a pour objectif de faciliter les commandes des visiteurs en leur présentant les menus de manière simple et rapide.
 
 ## Présentation de l’entreprise
 
-. Présentation "vite de Gourmand" a été créer il y a 25 ans à Bordeaux par Julie et José qui propose des prestations de menu pour tout événement. Cette application web permet d'augmenter la visibilité et proposer les menus plus facilement.
+Créée il y a 25 ans à Bordeaux par Julie et José, **Vite et Gourmand** propose des prestations de menus pour tout type d’événement.  
+L’application web permet d’augmenter la visibilité de l’entreprise et de présenter les menus plus facilement aux clients.
 
-## Activité – Type 1 : Développer la partie front-end d'une application web ou web mobile sécurisée
+---
 
-### Installer et configurer son environnement de travail en fonction du projet web ou web mobile
+# Table des matières
 
-### Maquettes des interfaces utilisateur web ou web mobile
+1. Activité – Type 1 : Développer la partie front-end d'une application web ou web mobile sécurisée  
+   - Installer et configurer son environnement  
+   - Maquettes et interfaces utilisateur  
+   - Interfaces statiques  
+   - Interfaces dynamiques  
 
-#### Outils de suivi de projet
+2. Activité – Type 2 : Développer la partie back-end d'une application web ou web mobile sécurisée  
+   - Base de données relationnelle  
+   - Accès aux données SQL / NoSQL  
+   - Composants métier  
+   - Déploiement de l’application  
 
-. Click'up : https://app.clickup.com/90152125758/v/li/901518966291
+---
 
-![alt text](image-11.png)
+# Diagrammes de conception
 
-#### Charte Graphique
+## Diagramme de cas d’usage
+![Diagramme de cas d’usage](usecase.png)
 
-![alt text](image-10.png)
+## Diagramme d’architecture
+![Diagramme d’architecture](architecture.png)
 
-    #### Wareframe mobile
+## Diagramme de navigation
+![Diagramme de navigation](navigation.png)
 
-![alt text](image-8.png)
-![alt text](image-9.png)
+---
 
-    #### W
-    ![alt text](image-7.png)
-    ![alt text](image-3.png)
+# Activité – Type 1 : Développer la partie front-end
 
-####
+## Installer et configurer son environnement
 
-![alt text](image-5.png)
-![alt text](image-6.png)
+*(Décris ici ton environnement : Node, Vite, React, etc.)*
 
-### Réaliser des interfaces utilisateur statiques web ou web mobile
+---
 
-### Développer la partie dynamique des interfaces utilisateur web ou web mobile
+## Maquettes et interfaces utilisateur
 
-## Activité – Type 2 : Développer la partie back-end d'une application web ou web mobile sécurisée
+### Outils de suivi de projet
 
-### Mettre en place une base de données relationnelle
+Click’Up : https://app.clickup.com/90152125758/v/li/901518966291  
+![ClickUp](image-11.png)
 
-### Développer des composants d'accès aux données SQL et NoSQL
+### Charte graphique
 
-### Développer des composants métier coté serveur
+![Charte graphique](image-10.png)
 
-### Documenter le déploiement d'une application dynamique web ou web mobile
+### Wireframes et maquettes
+
+#### Wireframes Mobile
+
+![Wireframes Mobile](image-9.png)
+
+#### Maquettes Laptop
+
+![Maquettes Laptop](image-7.png)
+
+#### Wireframes Laptop  
+
+![Wireframes Laptop](image-3.png)
+
+#### Maquettes Mobile  
+
+![Maquettes Mobile](image-6.png)
+
+---
+
+# Réaliser des interfaces utilisateur statiques
+
+
+*(Ajoute ici ton code HTML/CSS ou captures d’écran)*
+
+---
+
+# Développer la partie dynamique des interfaces utilisateur
+
+
+*(Ajoute ici les fonctionnalités dynamiques : formulaires, API, interactions)*
+
+---
+
+# Activité – Type 2 : Développer la partie back-end
+
+
+## Mettre en place une base de données relationnelle
+
+### Diagramme de cas d'utilisation
+![Digramme de cas d'utilisation](image-12.png)
+
+### MCD  
+
+![MCD](image-15.png)
+
+### MLD  
+
+![MLD](image-13.png)
+
+### Schéma physique  
+
+![Schéma physique](image-14.png)
+
+---
+
+## Développer des composants d’accès aux données SQL / NoSQL
+
+*(Décris ici tes requêtes, ton ORM, ton API, etc.)*
+
+---
+
+## Développer des composants métier côté serveur
+
+### Diagramme de séquence  
+
+![Diagramme de séquence](sequence.png)
+
+### Diagramme d’activité  
+
+![Diagramme d’activité](activite.png)
+
+---
+
+## Documenter le déploiement de l’application
+
+*(Explique ici ton déploiement : serveur, hébergement, commandes, environnement)*
+
