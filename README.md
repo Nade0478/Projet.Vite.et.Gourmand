@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Vite et Gourmand
 
 Spécialiste de la réservation de restauration rapide, l’application a pour objectif de faciliter les commandes des visiteurs en leur présentant les menus de manière simple et rapide.
@@ -42,7 +43,14 @@ L’application web permet d’augmenter la visibilité de l’entreprise et de 
 
 ## Installer et configurer son environnement
 
-*(Décris ici ton environnement : Node, Vite, React, etc.)*
+### Backend
+
+    - Laravel
+  
+### Frontend
+
+    - React
+    - Bootstrap
 
 ---
 
@@ -97,7 +105,7 @@ Click’Up : https://app.clickup.com/90152125758/v/li/901518966291
 ## Mettre en place une base de données relationnelle
 
 ### Diagramme de cas d'utilisation
-![Digramme de cas d'utilisation](image-12.png)
+![Diagramme de cas d'utilisation](image-12.png)
 
 ### MCD  
 
@@ -135,3 +143,6 @@ Click’Up : https://app.clickup.com/90152125758/v/li/901518966291
 
 *(Explique ici ton déploiement : serveur, hébergement, commandes, environnement)*
 
+=======
+
+>>>>>>> 809df83a9e4f05f8ea22e62c31bf8ac2257d10e8
