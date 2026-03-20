@@ -88,14 +88,19 @@ Click’Up : https://app.clickup.com/90152125758/v/li/901518966291
 # Réaliser des interfaces utilisateur statiques
 
 
-*(Ajoute ici ton code HTML/CSS ou captures d’écran)*
+*(Code HTML/CSS ou captures d’écran)*
 
 ---
 
 # Développer la partie dynamique des interfaces utilisateur
 
 
-*(Ajoute ici les fonctionnalités dynamiques : formulaires, API, interactions)*
+*(Fonctionnalités dynamiques : formulaires, API, interactions)*
+
+Fonctionnalité dynamiques :
+    - API
+    - 
+
 
 ---
 
@@ -123,7 +128,7 @@ Click’Up : https://app.clickup.com/90152125758/v/li/901518966291
 
 ## Développer des composants d’accès aux données SQL / NoSQL
 
-*(Décris ici tes requêtes, ton ORM, ton API, etc.)*
+*(Décricription des requêtes,  ORM,  API, etc.)*
 
 ---
 
@@ -141,7 +146,7 @@ Click’Up : https://app.clickup.com/90152125758/v/li/901518966291
 
 ## Documenter le déploiement de l’application
 
-*(Explique ici ton déploiement : serveur, hébergement, commandes, environnement)*
+*(Déploiement : serveur, hébergement, commandes, environnement)*
 
 =======
 
