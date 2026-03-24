@@ -136,11 +136,11 @@ Fonctionnalité dynamiques :
 
 ### Diagramme de séquence  
 
-![Diagramme de séquence](sequence.png)
+![Diagramme de séquence](Diagramme de séquence.png)
 
 ### Diagramme d’activité  
 
-![Diagramme d’activité](activite.png)
+![Diagramme d’activité](diagramme activité 2.jpg)
 
 ---
 
