@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # Vite et Gourmand
 
-Spécialiste de la réservation de restauration rapide, l’application a pour objectif de faciliter les commandes des visiteurs en leur présentant les menus de manière simple et rapide.
+<Spécialiste de la réservation de restauration rapide, l’application a pour objectif de faciliter les commandes des visiteurs en leur présentant les menus de manière simple et rapide.
 
 ## Présentation de l’entreprise
 
