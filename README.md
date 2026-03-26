@@ -11,29 +11,33 @@ L’application web permet d’augmenter la visibilité de l’entreprise et de 
 
 # Table des matières
 
-1. **Activité – Type 1 : Développer la partie front-end d'une application web ou web mobile sécurisée**  
-   - Installer et configurer son environnement  
-   - Maquettes et interfaces utilisateur  
-   - Interfaces statiques  
-   - Interfaces dynamiques  
+1. **Activité – Type 1 : Développer la partie front-end d'une application web ou web mobile sécurisée**
 
-2. **Activité – Type 2 : Développer la partie back-end d'une application web ou web mobile sécurisée**  
-   - Base de données relationnelle  
-   - Accès aux données SQL / NoSQL  
-   - Composants métier  
-   - Déploiement de l’application  
+   - Installer et configurer son environnement
+   - Maquettes et interfaces utilisateur
+   - Interfaces statiques
+   - Interfaces dynamiques
+
+2. **Activité – Type 2 : Développer la partie back-end d'une application web ou web mobile sécurisée**
+   - Base de données relationnelle
+   - Accès aux données SQL / NoSQL
+   - Composants métier
+   - Déploiement de l’application
 
 ---
 
 # Diagrammes de conception
 
 ## Diagramme de cas d’usage
+
 ![Diagramme de cas d’usage](usecase.png)
 
 ## Diagramme d’architecture
+
 ![Diagramme d’architecture](architecture.png)
 
 ## Diagramme de navigation
+
 ![Diagramme de navigation](navigation.png)
 
 ---
@@ -41,6 +45,19 @@ L’application web permet d’augmenter la visibilité de l’entreprise et de 
 # Activité – Type 1 : Développer la partie front-end
 
 ## Installer et configurer son environnement
+
+- **Technologies utilisées :**  
+  - Framework : *React  
+  - Gestionnaire de paquets : *npm  
+  - Outils : *Vite / Webpack / ESLint / Prettier*  
+  - Navigateur cible :** Chrome / Firefox / Edge
+  
+- **Installation du projet :**
+  ```bash
+  git clone https://github.com/Nade0478/Projet-vite-et-gourmand/tree/MAIN
+  cd Projet-vite-et-gourmand
+  npm install
+  npm run dev
 
 ### Backend
 
@@ -57,16 +74,84 @@ L’application web permet d’augmenter la visibilité de l’entreprise et de 
 
 ### Frontend
 
-- React  
+- React
+  ## Installation de React
+
+L’application utilise **React** pour la partie front‑end. Voici les étapes pour installer et lancer le projet.
+
+### 1. Prérequis
+
+Assurez‑vous d’avoir installé :
+
+- Node.js
+- npm (installé avec Node)
+
+Vérification :
+
+```bash
+node -v
+npm -v
+
 - Bootstrap
 
 ---
 
 ## Maquettes et interfaces utilisateur
+Réalisation des maquettes avec Figma
+- https://www.figma.com/design/6Vb3xBvo3rBx8XYySlGOWL/Projet-Vite-et-Gourmand?node-id=8-2&p=f&t=SeDt5PiQ4oHMTbaD-0
+
+Respect des principes :
+
+Responsive design
+
+Accessibilité (WCAG)
+
+Cohérence graphique
+
+Page d’accueil
+
+Page de connexion
+
+Tableau de bord utilisateur
+
+1.3 Interfaces statiques
+Intégration HTML / CSS / Framework CSS (Bootstrap…)
+
+Composants statiques :
+
+Header / Footer
+
+Formulaires
+
+Cartes / Listes
+
+Respect des bonnes pratiques :
+
+Sémantique HTML
+
+CSS modulaires
+
+Mobile-first
+
+1.4 Interfaces dynamiques
+Utilisation de JavaScript / TypeScript
+
+Appels API (fetch / axios)
+
+Gestion des états (Redux)
+
+Fonctionnalités dynamiques :
+
+Authentification
+
+CRUD (Create, Read, Update, Delete)
+
+Notifications / Modales
+
 
 ### Outils de suivi de projet
 
-ClickUp : https://app.clickup.com/90152125758/v/li/901518966291  
+ClickUp : https://app.clickup.com/90152125758/v/li/901518966291
 ![ClickUp](image-11.png)
 
 ### Charte graphique
@@ -75,16 +160,16 @@ ClickUp : https://app.clickup.com/90152125758/v/li/901518966291
 
 ### Wireframes et maquettes
 
-#### Wireframes Mobile  
+#### Wireframes Mobile
 ![Wireframes Mobile](image-9.png)
 
-#### Maquettes Laptop  
+#### Maquettes Laptop
 ![Maquettes Laptop](image-7.png)
 
-#### Wireframes Laptop  
+#### Wireframes Laptop
 ![Wireframes Laptop](image-3.png)
 
-#### Maquettes Mobile  
+#### Maquettes Mobile
 ![Maquettes Mobile](image-6.png)
 
 ---
@@ -97,10 +182,10 @@ ClickUp : https://app.clickup.com/90152125758/v/li/901518966291
 
 # Développer la partie dynamique des interfaces utilisateur
 
-Fonctionnalités dynamiques :  
-- API  
-- Formulaires  
-- Interactions utilisateur  
+Fonctionnalités dynamiques :
+- API
+- Formulaires
+- Interactions utilisateur
 
 ---
 
@@ -108,16 +193,16 @@ Fonctionnalités dynamiques :
 
 ## Mettre en place une base de données relationnelle
 
-### Diagramme de cas d'utilisation  
+### Diagramme de cas d'utilisation
 ![Diagramme de cas d'utilisation](image-12.png)
 
-### MCD  
+### MCD
 ![MCD](image-15.png)
 
-### MLD  
+### MLD
 ![MLD](image-13.png)
 
-### Schéma physique  
+### Schéma physique
 ![Schéma physique](image-14.png)
 
 ---
@@ -129,16 +214,53 @@ Fonctionnalités dynamiques :
 ---
 
 ## Développer des composants métier côté serveur
+Architecture
+MVC / Clean Architecture
 
-### Diagramme de séquence  
+Routes → Controllers → Services → Models
+
+- Fonctionnalités principales
+Authentification JWT
+
+Gestion des rôles (admin / user)
+
+CRUD complet
+
+Gestion des erreurs (middleware)
+
+
+### Diagramme de séquence
 ![Diagramme de séquence](Diagramme%20de%20séquence.png)
 
-### Diagramme d’activité  
+### Diagramme d’activité
 ![Diagramme d’activité](image-16.png)
 
 ---
+Tests
+Tests unitaires (Jest / PHPUnit)
+
+Tests API (Postman)
 
 ## Documenter le déploiement de l’application
+Déploiement front-end
+Netlify
 
+Déploiement back-end
+Render
+
+Configuration du serveur Node / PHP
+
+Déploiement base de données
+hébergement MySQL
 *(Déploiement : serveur, hébergement, commandes, environnement)*
 
+- Sécurisation production
+Variables d’environnement
+
+HTTPS
+
+CORS configuré
+
+Logs et monitoring
+
+```
