@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
 
             // Relation avec l'utilisateur
-            $table->foreignId('utilisateur_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
             // Note entre 1 et 5
             $table->integer('note');

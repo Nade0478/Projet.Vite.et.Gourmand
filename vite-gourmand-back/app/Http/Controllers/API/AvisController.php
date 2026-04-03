@@ -10,13 +10,13 @@ class AvisController extends Controller
 {
     public function index()
     {
-        return Avis::with('utilisateur')->get();
+        return Avis::with('user')->get();
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'utilisateur_id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id',
             'note' => 'required|integer|min:1|max:5',
             'description' => 'nullable|string',
             'statut' => 'nullable|string',
@@ -27,7 +27,7 @@ class AvisController extends Controller
 
     public function show(Avis $avi)
     {
-        return $avi->load('utilisateur');
+        return $avi->load('user');
     }
 
     public function update(Request $request, Avis $avi)
@@ -40,7 +40,7 @@ class AvisController extends Controller
 
         $avi->update($request->all());
 
-        return $avi->load('utilisateur');
+        return $avi->load('user');
     }
 
     public function destroy(Avis $avi)

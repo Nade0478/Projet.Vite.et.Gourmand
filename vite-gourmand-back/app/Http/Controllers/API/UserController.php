@@ -62,6 +62,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return response()->json(['message' => 'Utilisateur supprimé']);
+        return response()->json(['message' => 'user supprimé']);
     }
 }

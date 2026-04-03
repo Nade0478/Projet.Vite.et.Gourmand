@@ -10,7 +10,7 @@ class Avis extends Model
     use HasFactory;
 
     protected $fillable = [
-        'utilisateur_id',
+        'user_id',
         'note',
         'description',
         'statut',
@@ -23,8 +23,8 @@ class Avis extends Model
     */
 
     // Un avis appartient à un utilisateur
-    public function utilisateur()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'utilisateur_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

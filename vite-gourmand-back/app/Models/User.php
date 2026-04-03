@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Avis;
+use App\Models\Commande;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
@@ -29,6 +33,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed', // Hash automatique Laravel 10+
     ];
 
     /*
@@ -61,18 +66,39 @@ class User extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
+    public function hasRole(string $role)
+    {
+        return $this->role?->name === $role;
+    }
+
     public function isAdmin()
     {
-        return $this->role?->name === 'administrateur';
+        return $this->hasRole('administrateur');
     }
 
     public function isSalarie()
     {
-        return $this->role?->name === 'salarie';
+        return $this->hasRole('salarie');
     }
 
     public function isClient()
     {
-        return $this->role?->name === 'client';
+        return $this->hasRole('client');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | JWT AUTH
+    |--------------------------------------------------------------------------
+    */
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

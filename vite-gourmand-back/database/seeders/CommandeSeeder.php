@@ -12,7 +12,7 @@ class CommandeSeeder extends Seeder
     {
         Commande::create([
             'numero_commande' => Str::upper(Str::random(10)),
-            'utilisateur_id' => 3, // un client
+            'user_id' => 3, // un client
             'date_commande' => now()->toDateString(),
             'date_prestation' => now()->addDays(3)->toDateString(),
             'heure_livraison' => '12:00',
