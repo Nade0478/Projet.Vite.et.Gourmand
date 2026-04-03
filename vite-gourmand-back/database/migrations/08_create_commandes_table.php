@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('numero_commande')->unique();
 
             // Relation avec l'utilisateur
-            $table->foreignId('utilisateur_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
             // Dates
             $table->date('date_commande');

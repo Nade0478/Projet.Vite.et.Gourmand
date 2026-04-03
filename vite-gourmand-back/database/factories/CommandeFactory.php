@@ -11,7 +11,7 @@ class CommandeFactory extends Factory
     {
         return [
             'numero_commande' => Str::upper(Str::random(10)),
-            'utilisateur_id' => $this->faker->numberBetween(1, 10),
+            'user_id' => $this->faker->numberBetween(1, 10),
             'date_commande' => $this->faker->date(),
             'date_prestation' => $this->faker->date(),
             'heure_livraison' => $this->faker->time(),

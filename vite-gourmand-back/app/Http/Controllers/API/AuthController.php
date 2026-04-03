@@ -3,15 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
+/**
+ * @mixin \Illuminate\Routing\Controller
+ */
 class AuthController extends Controller
 {
-    /**
-     * Inscription
-     */
+    public function __construct()
+    {
+        // Intelephense ne comprend pas cette méthode, mais elle est valide
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -27,13 +34,12 @@ class AuthController extends Controller
             'prenom' => $request->prenom,
             'nom' => $request->nom,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), // Sécurisé
             'telephone' => $request->telephone,
             'role_id' => $request->role_id,
         ]);
 
-        // Création du token Sanctum
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = JWTAuth::fromUser($user);
 
         return response()->json([
             'message' => 'Inscription réussie',
@@ -42,27 +48,19 @@ class AuthController extends Controller
         ], 201);
     }
 
-    /**
-     * Connexion
-     */
     public function login(Request $request)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string'
         ]);
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Identifiants incorrects'], 401);
         }
 
-        // Suppression des anciens tokens
-        $user->tokens()->delete();
-
-        // Nouveau token
-        $token = $user->createToken('auth_token')->plainTextToken;
+        /** @var \App\Models\User|null $user */
+        $user = auth()->user();
 
         return response()->json([
             'message' => 'Connexion réussie',
@@ -71,20 +69,17 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Récupérer l'utilisateur connecté
-     */
-    public function me(Request $request)
+    public function me()
     {
-        return response()->json($request->user());
+        /** @var \App\Models\User|null $user */
+        $user = auth()->user();
+
+        return response()->json($user);
     }
 
-    /**
-     * Déconnexion
-     */
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->user()->tokens()->delete();
+        JWTAuth::invalidate(JWTAuth::getToken());
 
         return response()->json(['message' => 'Déconnexion réussie']);
     }

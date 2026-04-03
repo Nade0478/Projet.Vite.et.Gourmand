@@ -11,7 +11,7 @@ class Commande extends Model
 
     protected $fillable = [
         'numero_commande',
-        'utilisateur_id',
+        'user_id',
         'date_commande',
         'date_prestation',
         'heure_livraison',
@@ -30,9 +30,9 @@ class Commande extends Model
     */
 
     // Une commande appartient à un utilisateur
-    public function utilisateur()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'utilisateur_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // Une commande contient plusieurs menus (pivot commande_menu)

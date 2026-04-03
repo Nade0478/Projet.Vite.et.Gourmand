@@ -11,13 +11,13 @@ class CommandeController extends Controller
 {
     public function index()
     {
-        return Commande::with('utilisateur', 'menus')->get();
+        return Commande::with('user', 'menus')->get();
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'utilisateur_id' => 'required|exists:users,id',
+            'user_id' => 'required|exists:users,id',
             'date_commande' => 'required|date',
             'date_prestation' => 'required|date',
             'heure_livraison' => 'required',
@@ -32,12 +32,12 @@ class CommandeController extends Controller
 
         $commande = Commande::create($data);
 
-        return $commande->load('utilisateur');
+        return $commande->load('user');
     }
 
     public function show(Commande $commande)
     {
-        return $commande->load('utilisateur', 'menus');
+        return $commande->load('user', 'menus');
     }
 
     public function update(Request $request, Commande $commande)
@@ -54,7 +54,7 @@ class CommandeController extends Controller
 
         $commande->update($request->all());
 
-        return $commande->load('utilisateur', 'menus');
+        return $commande->load('user', 'menus');
     }
 
     public function destroy(Commande $commande)
