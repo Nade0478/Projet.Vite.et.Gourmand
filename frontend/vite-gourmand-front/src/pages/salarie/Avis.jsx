@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../../components/ui/Loader";
+import Footer from "../../components/layout/Footer";
 
 export default function Avis() {
   const { data: avis, loading, get } = useFetch();
@@ -26,6 +27,7 @@ export default function Avis() {
           <p className="text-sm text-gray-500 mt-2">{a.created_at}</p>
         </div>
       ))}
+      <Footer />
     </div>
   );
 }

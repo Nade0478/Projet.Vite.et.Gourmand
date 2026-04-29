@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Button from "../../components/ui/Button";
 import Toast from "../../components/ui/Toast";
+import Navbar from "../../components/layout/Navbar";
+import Footer from "../../components/layout/Footer";
 
 export default function Contact() {
   const [form, setForm] = useState({ nom: "", email: "", message: "" });
@@ -16,45 +18,50 @@ export default function Contact() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 bg-white p-6 rounded shadow">
-      <h1 className="text-3xl font-bold mb-4">Contact</h1>
+    <>
+      <Navbar />
 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="nom"
-          placeholder="Votre nom"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+      <div className="max-w-lg mx-auto mt-10 bg-white p-6 rounded shadow">
+        <h1 className="text-3xl font-bold mb-4">Contact</h1>
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Votre email"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            name="nom"
+            placeholder="Votre nom"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-        <textarea
-          name="message"
-          placeholder="Votre message"
-          className="w-full border p-2 rounded mb-3"
-          rows="4"
-          onChange={handleChange}
-        />
+          <input
+            name="email"
+            type="email"
+            placeholder="Votre email"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-        <Button type="submit" className="w-full">
-          Envoyer
-        </Button>
-      </form>
+          <textarea
+            name="message"
+            placeholder="Votre message"
+            className="w-full border p-2 rounded mb-3"
+            rows="4"
+            onChange={handleChange}
+          />
 
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
-    </div>
+          <Button type="submit" className="w-full">
+            Envoyer
+          </Button>
+        </form>
+
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
+      </div>
+      <Footer/>
+    </>
   );
 }

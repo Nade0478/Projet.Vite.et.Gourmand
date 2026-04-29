@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../../components/ui/Loader";
+import Footer from "../../components/layout/Footer";
 
 export default function Horaires() {
   const { data: horaires, loading, get } = useFetch();
@@ -28,6 +29,7 @@ export default function Horaires() {
           </p>
         </div>
       ))}
+      <Footer/>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../../components/ui/Loader";
+import Footer from "../../components/layout/Footer";
 
 export default function DashboardSalarie() {
   const { data, loading, get } = useFetch();
@@ -31,6 +32,7 @@ export default function DashboardSalarie() {
           <p className="text-3xl font-bold mt-2">{data?.heures_travaillees}</p>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
