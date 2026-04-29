@@ -17,8 +17,14 @@ export default function Footer() {
 
         <div className="footer-section">
           <h4>Suivez-nous</h4>
+
           <div className="socials">
-            <span>
+            {/* Facebook */}
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg
                 width="40"
                 height="40"
@@ -33,8 +39,14 @@ export default function Footer() {
                   fill="#FFFFFF"
                 />
               </svg>
-            </span>
-            <span>
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg
                 width="40"
                 height="40"
@@ -51,8 +63,14 @@ export default function Footer() {
                   fill="#FFFFFF"
                 />
               </svg>
-            </span>
-            <span>
+            </a>
+
+            {/* X (Twitter) */}
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <svg
                 width="40"
                 height="40"
@@ -67,8 +85,58 @@ export default function Footer() {
                   fill="#FFFFFF"
                 />
               </svg>
-            </span>
-            
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Instagram"
+              >
+                <defs>
+                  <linearGradient
+                    id="igGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stopColor="#F58529" />
+                    <stop offset="30%" stopColor="#DD2A7B" />
+                    <stop offset="60%" stopColor="#8134AF" />
+                    <stop offset="100%" stopColor="#515BD4" />
+                  </linearGradient>
+                </defs>
+                <rect width="40" height="40" rx="10" fill="url(#igGradient)" />
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="7"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  strokeWidth="2"
+                />
+                <circle cx="27" cy="13" r="1.5" fill="#FFFFFF" />
+                <rect
+                  x="12"
+                  y="12"
+                  width="16"
+                  height="16"
+                  rx="5"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  strokeWidth="2"
+                />
+              </svg>
+            </a>
           </div>
         </div>
 

@@ -21,6 +21,7 @@ export default function Home() {
           <Button variant="primary">Voir les menus</Button>
         </Link>
       </div>
+
       <Footer />
     </>
   );

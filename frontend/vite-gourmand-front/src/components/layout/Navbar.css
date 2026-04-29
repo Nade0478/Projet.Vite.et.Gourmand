@@ -1,42 +1,80 @@
+:root {
+  --color-primary: #CCB531;
+  --color-accent: #6CC4BC;
+  --color-warm: #CC6831;
+  --color-bg: #F5F5F5;
+  --color-text: #333333;
+  --color-white: #FFFFFF;
+  --color-purple: #6A4C93;
+}
+
+/* Structure générale */
 .navbar {
-  background: #0C6E6D;
-  padding: 1rem 2rem;
-  color: white;
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-primary);
+  padding: 10px 20px;
 }
 
 .navbar-container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+
+/* Logo plus petit */
+.logo-img {
+  height: 35px;
+  width: auto;
+}
+
+/* Burger */
+.burger {
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  color: var(--color-primary);
+}
+
+/* Navigation desktop */
+.nav-links {
+  display: flex;
+  gap: 40px;
   align-items: center;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 1.4rem;
-  color: white;
-  text-decoration: none;
-}
-
-.burger {
-  display: none;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: white;
-}
-
-.nav-links {
+.nav-left,
+.nav-right {
   display: flex;
-  gap: 2rem;
+  gap: 20px;
 }
 
 .nav-links a {
-  color: white;
   text-decoration: none;
+  color: var(--color-text);
   font-weight: 500;
+  transition: 0.2s;
 }
 
-/* MOBILE */
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+/* Login / Register style */
+.nav-right a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.nav-right a:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* --- Responsive Mobile --- */
 @media (max-width: 768px) {
   .burger {
     display: block;
@@ -45,15 +83,29 @@
   .nav-links {
     position: absolute;
     top: 70px;
-    right: 0;
-    background: #0C6E6D;
-    flex-direction: column;
+    left: 0;
     width: 100%;
-    padding: 1rem;
+    background: var(--color-bg);
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 20px;
     display: none;
+    border-top: 2px solid var(--color-primary);
   }
 
   .nav-links.open {
     display: flex;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .nav-right a {
+    width: 80%;
+    text-align: center;
   }
 }

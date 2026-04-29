@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import Button from "../../components/ui/Button";
-import Toast from "../../components/ui/Toast";
 import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
+import Toast from "../../components/ui/Toast";
+import "../../components/forms/Form.css";
 
 export default function Contact() {
-  const [form, setForm] = useState({ nom: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    email: "",
+    titre: "",
+    message: "",
+  });
+
   const [toast, setToast] = useState(null);
 
   const handleChange = (e) => {
@@ -21,36 +26,43 @@ export default function Contact() {
     <>
       <Navbar />
 
-      <div className="max-w-lg mx-auto mt-10 bg-white p-6 rounded shadow">
-        <h1 className="text-3xl font-bold mb-4">Contact</h1>
+      <div className="contact-wrapper">
+        <h1 className="contact-title">Contactez-nous</h1>
+        <p className="contact-subtitle">
+          Une question ? Un projet ? Nous sommes à votre écoute.
+        </p>
 
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
+          <label>Email</label>
           <input
-            name="nom"
-            placeholder="Votre nom"
-            className="w-full border p-2 rounded mb-3"
-            onChange={handleChange}
-          />
-
-          <input
-            name="email"
             type="email"
+            name="email"
             placeholder="Votre email"
-            className="w-full border p-2 rounded mb-3"
+            required
             onChange={handleChange}
           />
 
+          <label>Titre du message</label>
+          <input
+            type="text"
+            name="titre"
+            placeholder="Sujet"
+            required
+            onChange={handleChange}
+          />
+
+          <label>Message</label>
           <textarea
             name="message"
-            placeholder="Votre message"
-            className="w-full border p-2 rounded mb-3"
-            rows="4"
+            placeholder="Votre message..."
+            rows="5"
+            required
             onChange={handleChange}
           />
 
-          <Button type="submit" className="w-full">
-            Envoyer
-          </Button>
+          <button type="submit" className="form-btn">
+            Envoyer le message
+          </button>
         </form>
 
         {toast && (
@@ -61,7 +73,8 @@ export default function Contact() {
           />
         )}
       </div>
-      <Footer/>
+
+      <Footer />
     </>
   );
 }

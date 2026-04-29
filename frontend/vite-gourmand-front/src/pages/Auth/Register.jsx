@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../../components/ui/Button";
 import Toast from "../../components/ui/Toast";
 import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/layout/Navbar";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -38,60 +39,65 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 bg-white p-6 rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Inscription</h1>
+    <>
+      <Navbar />
 
-      <form onSubmit={handleSubmit}>
-        <input
-          name="prenom"
-          placeholder="Prénom"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+      <div className="max-w-md mx-auto mt-20 bg-white p-6 rounded shadow">
+        <h1 className="text-2xl font-bold mb-4">Inscription</h1>
 
-        <input
-          name="nom"
-          placeholder="Nom"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            name="prenom"
+            placeholder="Prénom"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+          <input
+            name="nom"
+            placeholder="Nom"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-        <input
-          name="password"
-          type="password"
-          placeholder="Mot de passe"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-        <input
-          name="telephone"
-          placeholder="Téléphone"
-          className="w-full border p-2 rounded mb-3"
-          onChange={handleChange}
-        />
+          <input
+            name="password"
+            type="password"
+            placeholder="Mot de passe"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-        <Button type="submit" className="w-full">
-          S'inscrire
-        </Button>
-      </form>
+          <input
+            name="telephone"
+            placeholder="Téléphone"
+            className="w-full border p-2 rounded mb-3"
+            onChange={handleChange}
+          />
 
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-          )}
-          <Footer/>
-    </div>
+          <Button type="submit" className="w-full">
+            S'inscrire
+          </Button>
+        </form>
+
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
+      </div>
+
+      <Footer />
+    </>
   );
 }
