@@ -39,4 +39,4 @@ Route::apiResource('themes', ThemeController::class);
 Route::apiResource('horaires', HoraireController::class);
 Route::apiResource('avis', AvisController::class);
 
-// });  
+// });

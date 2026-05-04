@@ -1,35 +1,37 @@
-FROM php:8.2-fpm
+FROM php:8.3.21-fpm-alpine
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
+RUN apk add --no-cache \
+    build-base \
     libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libonig-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    oniguruma-dev \
     libzip-dev \
     zip \
     unzip \
     git \
     curl
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
 WORKDIR /var/www
 
-# Copy project files
-COPY . .
+# Permissions pour Laravel
+RUN chown -R www-data:www-data /var/www
 
-# Install dependencies
+# Copier uniquement composer.json pour optimiser le cache
+COPY composer.json composer.lock ./
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Expose port
-EXPOSE 10000
+# Copier le reste du projet
+COPY . .
 
-# Start Laravel server
-CMD php artisan serve --host=0.0.0.0 --port=10000
+# Permissions sur storage et bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
+EXPOSE 8000
+CMD php artisan serve --host=0.0.0.0 --port=8000

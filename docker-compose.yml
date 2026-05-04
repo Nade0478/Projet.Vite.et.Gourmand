@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=vite_gourmand
+      - DB_USERNAME=root
+      - DB_PASSWORD=secret
+      - APP_KEY=${APP_KEY}
+      - APP_ENV=local 
+      - APP_DEBUG=true
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/var/www 
+      - /var/www/vendor 
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: vite_gourmand
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:                 
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psecret"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
