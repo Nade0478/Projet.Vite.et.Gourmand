@@ -4,26 +4,25 @@ services:
   backend:
     build: ./backend
     ports:
-      - '8000:8000'
+      - "8000:8000"
     environment:
-      - DB_HOST=db
-      - DB_DATABASE=vite_gourmand
-      - DB_USERNAME=root
-      - DB_PASSWORD=secret
-      - APP_KEY=${APP_KEY}
-      - APP_ENV=local 
-      - APP_DEBUG=true
+      DB_HOST: db
+      DB_DATABASE: vite_gourmand
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+      APP_KEY: ${APP_KEY}
+      APP_ENV: local
+      APP_DEBUG: true
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./backend:/var/www 
-      - /var/www/vendor 
+      - ./backend:/var/www
 
   frontend:
     build: ./frontend
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
       - backend
 
@@ -34,7 +33,7 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     volumes:
       - db_data:/var/lib/mysql
-    healthcheck:                 
+    healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psecret"]
       interval: 10s
       timeout: 5s
