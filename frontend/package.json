@@ -9,7 +9,7 @@
     "react": "^19.2.4",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.0",
+    "react-router-dom": "^6.30.3",
     "react-scripts": "5.0.1",
     "sass": "^1.97.3",
     "web-vitals": "^2.1.4"
@@ -39,8 +39,18 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.9.1",
+    "@babel/preset-env": "^7.29.5",
+    "@babel/preset-react": "^7.28.5",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1"
+    "@testing-library/user-event": "^14.6.1",
+    "babel-jest": "^27.5.1",
+    "jest-environment-jsdom": "^27.5.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(png|jpg|jpeg|gif|svg|ico)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(css|scss|sass)$": "<rootDir>/src/__mocks__/fileMock.js"
+    }
   }
 }

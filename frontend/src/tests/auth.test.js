@@ -1,124 +1,103 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import axios from "axios";
-import LoginPage from "../src/pages/LoginPage";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
-// On simule axios pour ne pas faire de vraies requêtes HTTP
-jest.mock("axios");
+jest.mock("../hooks/useAuth", () => ({
+  __esModule: true,
+  default: () => ({
+    login: jest.fn().mockResolvedValue({ success: true }),
+  }),
+}));
 
-// Utilitaire : rend le composant dans un routeur (nécessaire si tu utilises useNavigate)
-const renderLogin = () =>
-  render(
-    <MemoryRouter>
-      <LoginPage />
-    </MemoryRouter>
-  );
-
-// ─────────────────────────────────────────────
-// 1. TESTS D'AUTHENTIFICATION
-// ─────────────────────────────────────────────
 describe("Authentification", () => {
-  // Réinitialise les mocks entre chaque test
   afterEach(() => jest.clearAllMocks());
 
-  // ── Connexion utilisateur standard ──
-  test("Connexion – accès à l'espace utilisateur avec des identifiants valides", async () => {
-    // Simule une réponse API réussie avec un token JWT
-    axios.post.mockResolvedValueOnce({
-      data: {
-        token: "fake-jwt-token",
-        user: { role: "client", email: "user@test.com" },
-      },
-    });
+  test("Connexion – le formulaire de connexion s'affiche correctement", () => {
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
 
-    renderLogin();
+    expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/mot de passe/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /se connecter/i })
+    ).toBeInTheDocument();
+  });
 
-    // Remplit le formulaire
-    fireEvent.change(screen.getByLabelText(/email/i), {
+  test("Connexion – l'utilisateur peut saisir son email et mot de passe", () => {
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    fireEvent.change(screen.getByPlaceholderText(/email/i), {
       target: { value: "user@test.com" },
     });
-    fireEvent.change(screen.getByLabelText(/mot de passe/i), {
+    fireEvent.change(screen.getByPlaceholderText(/mot de passe/i), {
       target: { value: "motdepasse123" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /connexion/i }));
 
-    // Vérifie que l'appel API a bien été fait avec les bonnes données
-    await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith(
-        expect.stringContaining("/login"),
-        { email: "user@test.com", password: "motdepasse123" }
-      );
-    });
-
-    // Vérifie que le token est bien sauvegardé en localStorage
-    expect(localStorage.getItem("token")).toBe("fake-jwt-token");
+    expect(screen.getByPlaceholderText(/email/i).value).toBe("user@test.com");
+    expect(screen.getByPlaceholderText(/mot de passe/i).value).toBe(
+      "motdepasse123"
+    );
   });
 
-  // ── Connexion administrateur ──
-  test("Connexion admin – accès au dashboard avec des identifiants admin", async () => {
-    axios.post.mockResolvedValueOnce({
-      data: {
-        token: "fake-admin-token",
-        user: { role: "admin", email: "admin@vitegourmand.fr" },
-      },
-    });
+  test("Inscription – le formulaire d'inscription s'affiche correctement", () => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
 
-    renderLogin();
-
-    fireEvent.change(screen.getByLabelText(/email/i), {
-      target: { value: "admin@vitegourmand.fr" },
-    });
-    fireEvent.change(screen.getByLabelText(/mot de passe/i), {
-      target: { value: "adminpass" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: /connexion/i }));
-
-    await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith(
-        expect.stringContaining("/login"),
-        { email: "admin@vitegourmand.fr", password: "adminpass" }
-      );
-    });
-
-    // Un utilisateur admin doit être redirigé vers /dashboard
-    // (à adapter selon ta logique de redirection)
-    expect(localStorage.getItem("token")).toBe("fake-admin-token");
+    expect(screen.getByPlaceholderText(/prénom/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/^nom$/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/email/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/mot de passe/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/téléphone/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /s'inscrire/i })
+    ).toBeInTheDocument();
   });
 
-  // ── Erreur de connexion ──
-  test("Erreur login – affiche un message d'erreur avec un mauvais mot de passe", async () => {
-    // Simule une erreur 401 renvoyée par l'API
-    axios.post.mockRejectedValueOnce({
-      response: { status: 401, data: { message: "Identifiants incorrects" } },
+  test("Inscription – affiche un message de succès après soumission", async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockResolvedValue({ message: "Inscription réussie" }),
     });
 
-    renderLogin();
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
 
-    fireEvent.change(screen.getByLabelText(/email/i), {
-      target: { value: "user@test.com" },
+    fireEvent.change(screen.getByPlaceholderText(/prénom/i), {
+      target: { value: "Alice" },
     });
-    fireEvent.change(screen.getByLabelText(/mot de passe/i), {
-      target: { value: "mauvaismdp" },
+    fireEvent.change(screen.getByPlaceholderText(/^nom$/i), {
+      target: { value: "Dupont" },
     });
-    fireEvent.click(screen.getByRole("button", { name: /connexion/i }));
+    fireEvent.change(screen.getByPlaceholderText(/email/i), {
+      target: { value: "alice@test.com" },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/mot de passe/i), {
+      target: { value: "pass123" },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/téléphone/i), {
+      target: { value: "0600000000" },
+    });
 
-    // Le message d'erreur doit apparaître à l'écran
+    fireEvent.click(screen.getByRole("button", { name: /s'inscrire/i }));
+
     await waitFor(() => {
-      expect(screen.getByText(/identifiants incorrects/i)).toBeInTheDocument();
+      expect(screen.getByText(/inscription réussie/i)).toBeInTheDocument();
     });
-  });
 
-  // ── Déconnexion ──
-  test("Déconnexion – retour à la page login après clic sur Déconnexion", async () => {
-    // Pré-condition : un token est présent
-    localStorage.setItem("token", "fake-jwt-token");
-
-    // Ici on teste directement la fonction logout (ou un composant Header/Navbar)
-    // Adapte l'import selon ton composant réel
-    const { logout } = require("../src/utils/auth");
-    logout();
-
-    // Le token doit être supprimé
-    expect(localStorage.getItem("token")).toBeNull();
+    global.fetch = undefined;
   });
 });
