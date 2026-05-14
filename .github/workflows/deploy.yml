@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -20,38 +20,42 @@ jobs:
         working-directory: ./frontend
 
       - name: Run Jest tests
-        run: npm test -- --watchAll=false --ci    
+        run: npm test -- --watchAll=false --ci
         working-directory: ./frontend
 
       - name: Build React app
         run: npm run build
         working-directory: ./frontend
 
-      - name: Setup PHP                          
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           extensions: pdo, pdo_mysql, mbstring, zip
 
-      - name: Install backend dependencies        
+      - name: Install backend dependencies
         run: composer install --no-interaction --prefer-dist
         working-directory: ./backend
 
-      - name: Run Laravel tests                
+      - name: Copy .env
+        run: cp .env.example .env
+        working-directory: ./backend
+
+      - name: Generate app key
+        run: php artisan key:generate
+        working-directory: ./backend
+
+      - name: Run Laravel tests
         run: php artisan test
         working-directory: ./backend
         env:
-          DB_CONNECTION: sqlite                   
+          DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
-        with:
-          publish-dir: './frontend/build'
-          production-branch: main
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --prod --dir=frontend/dist --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Deploy backend to Render
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
