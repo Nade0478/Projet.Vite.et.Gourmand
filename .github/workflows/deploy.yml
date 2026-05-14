@@ -55,7 +55,7 @@ jobs:
       - name: Deploy to Netlify
         run: |
           npm install -g netlify-cli
-          netlify deploy --prod --dir=frontend/dist --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_SITE_ID }}
+          netlify deploy --prod --dir=frontend/build --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Deploy backend to Render
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
