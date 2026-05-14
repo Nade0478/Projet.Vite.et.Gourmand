@@ -28,12 +28,11 @@ WORKDIR /var/www
 # Permissions globales pour Laravel
 RUN chown -R www-data:www-data /var/www
 
-# Installation des dépendances PHP (optimisation du cache Docker)
-COPY composer.json composer.lock ./
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
-
-# Copie du reste du projet
+# Copier TOUT le projet d'abord (artisan doit être présent)
 COPY . .
+
+# Puis installer les dépendances
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Permissions sur storage et bootstrap/cache
 RUN chown -R www-data:www-data storage bootstrap/cache \
